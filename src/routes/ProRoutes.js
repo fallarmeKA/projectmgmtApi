@@ -1,8 +1,8 @@
 // protectedRoutes.js
 
 const express = require('express');
-const { authenticateUser } = require('../middleware/auth');
-const { authorizeUser } = require('../middleware/auth');
+const { authenticateUser } = require('../middleware/authMiddleware.js');
+const { authorizeUser } = require('../middleware/authMiddleware.js'); 
 
 const router = express.Router();
 

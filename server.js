@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from 'helmet';
 import connectDB from './config/db.js';
-import userRoutes from './routes/UserRoutes.js'; 
+import UserRoutes from './routes/UserRoutes.js'; 
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -19,7 +19,7 @@ app.use(express.json());
 connectDB();
 
 // Use routes
-app.use('/api/v1/auth', userRoutes); // Use user routes
+app.use('/api/v1/auth', UserRoutes); // Use user routes
 
 // Start server
 app.listen(PORT, () => {
