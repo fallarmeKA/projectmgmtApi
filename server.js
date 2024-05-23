@@ -1,8 +1,9 @@
 import express from 'express';
-import connectDB from './config/db.js'; // Import the connectDB function
-import cors from 'cors';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import helmet from 'helmet';
+import connectDB from './config/db.js';
+import userRoutes from './routes/UserRoutes.js'; 
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -14,13 +15,11 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
-// Connect to MongoDB using the imported function
+// Connect to MongoDB
 connectDB();
 
-// Define a basic route
-app.get('/', (req, res) => {
-  res.send('API is running...');
-});
+// Use routes
+app.use('/api/v1/auth', userRoutes); // Use user routes
 
 // Start server
 app.listen(PORT, () => {

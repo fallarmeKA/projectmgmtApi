@@ -3,7 +3,7 @@ import JWT from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcryptjs';
 
-
+// Update User
 export const updateUserController = async (req, res, next) => {
     const { fullname, email, password } = req.body;
     try {
@@ -15,8 +15,8 @@ export const updateUserController = async (req, res, next) => {
         if (email) user.email = email;
         if (password) {
             user.password = password;
-            await user.save();
         }
+        await user.save();
         const token = user.generateAuthToken();
         res.status(200).json({ user, token });
     } catch (error) {
@@ -25,7 +25,7 @@ export const updateUserController = async (req, res, next) => {
     }
 };
 
-// Controller to handle getting user details
+// Get User
 export const getUserController = async (req, res, next) => {
     try {
         const userId = req.params.userId;
@@ -40,7 +40,7 @@ export const getUserController = async (req, res, next) => {
     }
 };
 
-// Controller to handle creating a new user
+// Create User
 export const postUserController = async (req, res, next) => {
     const { username, email, password } = req.body;
     try {
@@ -53,11 +53,12 @@ export const postUserController = async (req, res, next) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-// Controller to handle forgot password functionality
+
+// Forgot Password
 export const forgotPasswordController = async (req, res, next) => {
     const { email } = req.body;
     try {
-        const user = await User.findOne({ email: email });
+        const user = await User.findOne({ email });
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
@@ -66,13 +67,13 @@ export const forgotPasswordController = async (req, res, next) => {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'baryowork@gmail.com',
-                pass: 'gsuy xpju ijoe lvuw',
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS,
             }
         });
 
         const mailOptions = {
-            from: 'ProjMgmt@gmail.com',
+            from: process.env.EMAIL_USER,
             to: email,
             subject: 'FORGOT PASSWORD',
             text: `It seems like you've forgotten your password, but don't worry, we're here to assist you. Please provide your email address below, and we'll send you detailed instructions on how to reset your password securely.\n\nTo reset your password, please click the link below. You'll receive further instructions via email. Thank you.\n\nIf you did not send this request to change your password, please disregard this message and ensure your account security by contacting our support team immediately.\n\nhttp://localhost:3000/reset-password/${user._id}/${token}`
@@ -93,8 +94,8 @@ export const forgotPasswordController = async (req, res, next) => {
     }
 };
 
-// Controller to handle resetting password
-export const resetpassController = async (req, res, next) => {
+// Reset Password
+export const resetPasswordController = async (req, res, next) => {
     const { id, token } = req.params;
     const { password } = req.body;
 
