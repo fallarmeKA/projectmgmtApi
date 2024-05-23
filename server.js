@@ -1,8 +1,8 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const helmet = require('helmet');
+import express from 'express';
+import connectDB from './config/db.js'; // Import the connectDB function
+import cors from 'cors';
+import dotenv from 'dotenv';
+import helmet from 'helmet';
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -14,19 +14,13 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect(process.env.ATLAS_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => {
-    console.log('MongoDB connected');
-  })
-  .catch(err => {
-    console.error('MongoDB connection error:', err);
-    process.exit(1); // Exit the process with failure
-  });
+// Connect to MongoDB using the imported function
+connectDB();
 
+// Define a basic route
+app.get('/', (req, res) => {
+  res.send('API is running...');
+});
 
 // Start server
 app.listen(PORT, () => {
