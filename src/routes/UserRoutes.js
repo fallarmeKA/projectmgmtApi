@@ -1,5 +1,5 @@
 import express from 'express';
-import { updateUserController, getUserController, forgotPasswordController, resetPasswordController, loginUserController } from '../controllers/userController.js';
+import { updateUserController, getUserController, forgotPasswordController, resetPasswordController, loginUserController } from '../controllers/UserController.js';
 
 const router = express.Router();
 
