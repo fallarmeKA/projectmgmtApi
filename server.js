@@ -3,12 +3,12 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from 'helmet';
 import connectDB from './config/db.js';
-import UserRoutes from './routes/userRoutes.js'; 
-import ProjectRoutes from './routes/projectRoutes.js';
-import TaskRoutes from './routes/taskRoutes.js';
-import TimeTableRoutes from './routes/timeTableRoutes.js';
-import ReportRoutes from './routes/reportRoutes.js';
-import LoginRoutes from './routes/loginRoutes.js';
+import userRoutes from './routes/userRoutes.js';  
+import projectRoutes from './routes/projectRoutes.js'; 
+import taskRoutes from './routes/taskRoutes.js';
+import timeTableRoutes from './routes/timeTableRoutes.js';
+import reportRoutes from './routes/reportRoutes.js';
+import loginRoutes from './routes/loginRoutes.js';
 
 import errorMiddleware from './middlewares/errorMiddleware.js';
 
@@ -26,12 +26,12 @@ app.use(express.json());
 connectDB();
 
 // Use routes
-app.use('/api/v1/auth', UserRoutes); // Use user routes
-app.use('/api/v1/projects', ProjectRoutes); // Use project routes
-app.use('/api/v1/tasks', TaskRoutes); // Use task routes
-app.use('/api/v1/timetables', TimeTableRoutes); // Use timetable routes
-app.use('/api/v1/reports', ReportRoutes); // Use report routes
-app.use('/api/v1/logins', LoginRoutes); // Use login routes
+app.use('/api/v1/auth', userRoutes); // Use user routes
+app.use('/api/v1/projects', projectRoutes); // Use project routes
+app.use('/api/v1/tasks', taskRoutes); // Use task routes
+app.use('/api/v1/timetables', timeTableRoutes); // Use timetable routes
+app.use('/api/v1/reports', reportRoutes); // Use report routes
+app.use('/api/v1/logins', loginRoutes); // Use login routes
 
 // Error middleware
 app.use(errorMiddleware); // use error middleware
