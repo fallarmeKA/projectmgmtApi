@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from 'helmet';
 import connectDB from './config/db.js';
-import userRoutes from './routes/userRoutes.js';  
+import userRoutes from './routes/userRoutes.js';
 import projectRoutes from './routes/projectRoutes.js'; 
 import taskRoutes from './routes/taskRoutes.js';
 import timeTableRoutes from './routes/timeTableRoutes.js';

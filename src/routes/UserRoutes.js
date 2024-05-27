@@ -1,5 +1,5 @@
 import express from 'express';
-import userController from '../controllers/userController.js';  // Adjust the path according to your directory structure
+import userController from '../controllers/userController.js';  
 
 const router = express.Router();
 
