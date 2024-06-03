@@ -6,14 +6,14 @@ import connectDB from './config/db.js';
 import userRoutes from './src/routes/userRoutes.js';
 import projectRoutes from './src/routes/projectRoutes.js';
 import taskRoutes from './src/routes/taskRoutes.js';
-import timetableRoutes from './src/routes/timetableRoutes.js';
+import timetableRoutes from './src/routes/timtRoutes.js';
 import reportRoutes from './src/routes/reportRoutes.js';
 import loginRoutes from './src/routes/loginRoutes.js';
 import deliverableRoutes from './src/routes/deliverableRoutes.js'; // Import deliverable routes
 import morgan from 'morgan';
 import http from 'http';
 import { Server } from 'socket.io';
-import logger from './src/utils/logger'; // Import logger
+import logger from './src/utils/logger.js'; // Import logger with .js extension
 
 dotenv.config();
 
