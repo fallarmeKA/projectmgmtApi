@@ -4,18 +4,19 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const connectDB = async () => {
-  try {
-    const mongoURL = process.env.DEV_MODE === 'development' ? process.env.MONGO_LOCAL_URL : process.env.MONGO_URL;
-    
-    const conn = await mongoose.connect(mongoURL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+  const mongoURL = process.env.DEV_MODE === 'development' ? process.env.MONGO_LOCAL_URL : process.env.MONGO_URL;
 
+  if (!mongoURL) {
+    console.error('MongoDB URL not defined in environment variables');
+    process.exit(1);
+  }
+
+  try {
+    const conn = await mongoose.connect(mongoURL);
     console.log(`MongoDB connected: ${conn.connection.host}`);
   } catch (error) {
-    console.error(`Error: ${error.message}`);
-    process.exit(1);
+    console.error(`Error connecting to MongoDB: ${error.message}`);
+    setTimeout(connectDB, 5000); // Retry connection after 5 seconds
   }
 };
 
