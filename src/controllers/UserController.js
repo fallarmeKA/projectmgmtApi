@@ -2,6 +2,7 @@ import User from "../models/userModel.js";
 import JWT from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcryptjs';
+import logger from '../utils/logger'; 
 
 // Update User
 export const updateUserController = async (req, res, next) => {
@@ -9,18 +10,22 @@ export const updateUserController = async (req, res, next) => {
     try {
         const user = await User.findById(req.user.userId);
         if (!user) {
+            logger.warn('User not found for update:', req.user.userId);
             return res.status(404).json({ message: "User not found" });
         }
         if (fullname) user.fullname = fullname;
         if (email) user.email = email;
         if (password) {
-            user.password = password;
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(password, salt);
+            user.password = hashedPassword;
         }
         await user.save();
         const token = user.generateAuthToken();
+        logger.info('User updated successfully:', user._id);
         res.status(200).json({ user, token });
     } catch (error) {
-        console.error('Error updating user:', error);
+        logger.error('Error updating user:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
@@ -31,11 +36,13 @@ export const getUserController = async (req, res, next) => {
         const userId = req.params.userId;
         const user = await User.findById(userId);
         if (!user) {
+            logger.warn('User not found for get:', userId);
             return res.status(404).json({ message: "User not found" });
         }
+        logger.info('User retrieved successfully:', userId);
         res.status(200).json({ user });
     } catch (error) {
-        console.error('Error fetching user:', error);
+        logger.error('Error fetching user:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
@@ -47,9 +54,10 @@ export const postUserController = async (req, res, next) => {
         const user = new User({ username, email, password });
         await user.save();
         const token = user.generateAuthToken();
+        logger.info('User created successfully:', user._id);
         res.status(201).json({ user, token });
     } catch (error) {
-        console.error('Error creating user:', error);
+        logger.error('Error creating user:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
@@ -60,6 +68,7 @@ export const forgotPasswordController = async (req, res, next) => {
     try {
         const user = await User.findOne({ email });
         if (!user) {
+            logger.warn('User not found for forgot password:', email);
             return res.status(404).json({ message: "User not found" });
         }
         const token = JWT.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
@@ -81,15 +90,15 @@ export const forgotPasswordController = async (req, res, next) => {
 
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
-                console.error('Error sending reset email:', error);
+                logger.error('Error sending reset email:', error);
                 return res.status(500).json({ message: 'Error sending reset email' });
             } else {
-                console.log('Reset email sent:', info.response);
+                logger.info('Reset email sent successfully:', info.response);
                 return res.status(200).json({ message: 'Reset email sent successfully' });
             }
         });
     } catch (error) {
-        console.error('Error generating reset token:', error);
+        logger.error('Error generating reset token:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
@@ -103,14 +112,16 @@ export const resetPasswordController = async (req, res, next) => {
         const decoded = await JWT.verify(token, process.env.JWT_SECRET);
         const user = await User.findById(id);
         if (!user) {
+            logger.warn('User not found for reset password:', id);
             return res.status(404).json({ message: "User not found" });
         }
         const hashedPassword = await bcrypt.hash(password, 10);
         user.password = hashedPassword;
         await user.save();
+        logger.info('Password reset successfully:', id);
         res.status(200).json({ message: "Password reset successfully" });
     } catch (error) {
-        console.error('Error resetting password:', error);
+        logger.error('Error resetting password:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
