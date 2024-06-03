@@ -13,7 +13,7 @@ import deliverableRoutes from './src/routes/deliverableRoutes.js'; // Import del
 import morgan from 'morgan';
 import http from 'http';
 import { Server } from 'socket.io';
-import logger from './src/utils/logger.js'; // Import logger with .js extension
+import logger from '../utils/logger.js';
 
 dotenv.config();
 

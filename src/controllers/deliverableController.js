@@ -1,5 +1,5 @@
 import Deliverable from '../models/deliverableModel.js';
-import logger from '../utils/logger'; // Import the logger
+import logger from '../utils/logger.js';
 
 // Create Deliverable
 export const createDeliverableController = async (req, res) => {

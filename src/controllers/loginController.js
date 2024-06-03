@@ -1,5 +1,5 @@
 import Login from '../models/loginModel.js';
-import logger from '../utils/logger'; // Ensure you have a logger utility
+import logger from '../utils/logger.js';
 
 // Create Login
 export const createLoginController = async (req, res) => {

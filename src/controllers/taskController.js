@@ -1,5 +1,5 @@
 import Task from '../models/taskModel.js';
-import logger from '../utils/logger'; // Import the logger
+import logger from '../utils/logger.js';
 import { io } from '../../server.js'; // Import io instance
 
 // Create Task
