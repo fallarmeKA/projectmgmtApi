@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const connectDB = async () => {
-  const mongoURL = process.env.DEV_MODE === 'development' ? process.env.MONGO_LOCAL_URL : process.env.MONGO_URL;
+  const mongoURL = process.env.MONGO_URL;
 
   if (!mongoURL) {
     console.error('MongoDB URL not defined in environment variables');
