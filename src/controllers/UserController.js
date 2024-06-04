@@ -2,7 +2,7 @@ import User from "../models/userModel.js";
 import JWT from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcryptjs';
-import logger from './src/utils/logger.js';
+import logger from '../utils/logger.js';
 
 // Update User
 export const updateUserController = async (req, res, next) => {

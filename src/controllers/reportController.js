@@ -1,6 +1,6 @@
 import Project from '../models/projectModel.js';
 import Task from '../models/taskModel.js';
-import logger from './src/utils/logger.js';
+import logger from '../utils/logger.js';
 import { io } from '../../server.js'; // Import io instance
 
 // Get Report Data for a Specific Project

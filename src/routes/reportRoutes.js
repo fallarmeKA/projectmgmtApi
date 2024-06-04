@@ -1,9 +1,9 @@
 import express from 'express';
-import { createReportController, getReportsController } from '../controllers/reportController.js';
+import { getProjectReportController } from '../controllers/reportController.js';
 
 const router = express.Router();
 
-router.post('/create', createReportController);
-router.get('/', getReportsController);
+// Route to get a project report
+router.get('/project/:projectId', getProjectReportController);
 
 export default router;
