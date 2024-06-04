@@ -1,5 +1,5 @@
 import TimeTable from '../models/timtModel.js';
-import logger from '../utils/logger.js';
+import logger from './src/utils/logger.js';
 
 // Create TimeTable
 export const createTimeTableController = async (req, res) => {

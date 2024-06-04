@@ -13,7 +13,7 @@ import deliverableRoutes from './src/routes/deliverableRoutes.js';
 import morgan from 'morgan';
 import http from 'http';
 import { Server } from 'socket.io';
-import logger from '../utils/logger.js';
+import logger from './src/utils/logger.js'; 
 
 dotenv.config();
 
@@ -42,13 +42,13 @@ app.use('/api/v1/deliverables', deliverableRoutes);
 
 // Error middleware
 function errorMiddleware(err, req, res, next) {
-    const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-    res.status(statusCode);
-    logger.error(err.message, err); // Log the error
-    res.json({
-        message: err.message,
-        stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack
-    });
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  res.status(statusCode);
+  logger.error(err.message, err); // Log the error
+  res.json({
+    message: err.message,
+    stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack,
+  });
 }
 
 app.use(errorMiddleware);
@@ -75,4 +75,5 @@ export { io };
 
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  logger.info(`Server is running on port ${PORT}`); // Added logging
 });

@@ -8,16 +8,9 @@ import {
 
 const router = express.Router();
 
-// Create a new deliverable
-router.post('/', createDeliverableController);
-
-// Get all deliverables
-router.get('/', getDeliverablesController);
-
-// Update a deliverable by ID
-router.put('/:id', updateDeliverableController);
-
-// Delete a deliverable by ID
-router.delete('/:id', deleteDeliverableController);
+router.post('/deliverables', createDeliverableController);
+router.get('/deliverables', getDeliverablesController);
+router.put('/deliverables/:id', updateDeliverableController);
+router.delete('/deliverables/:id', deleteDeliverableController);
 
 export default router;

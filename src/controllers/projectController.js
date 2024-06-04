@@ -1,7 +1,7 @@
 import Project from '../models/projectModel.js';
 import Deliverable from '../models/deliverableModel.js';
-import logger from '../utils/logger.js';
-import { io } from '../../server.js'; // Import io instance
+import logger from './utils/logger.js';
+import { io } from '../../server.js'; 
 
 // Create Project
 export const createProjectController = async (req, res) => {
