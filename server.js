@@ -9,7 +9,7 @@ import taskRoutes from './src/routes/taskRoutes.js';
 import timetableRoutes from './src/routes/timtRoutes.js';
 import reportRoutes from './src/routes/reportRoutes.js';
 import loginRoutes from './src/routes/loginRoutes.js';
-import deliverableRoutes from './src/routes/deliverableRoutes.js'; // Import deliverable routes
+import deliverableRoutes from './src/routes/deliverableRoutes.js';
 import morgan from 'morgan';
 import http from 'http';
 import { Server } from 'socket.io';
@@ -38,7 +38,7 @@ app.use('/api/v1/tasks', taskRoutes);
 app.use('/api/v1/timetables', timetableRoutes);
 app.use('/api/v1/reports', reportRoutes);
 app.use('/api/v1/logins', loginRoutes);
-app.use('/api/v1/deliverables', deliverableRoutes); // Use deliverable routes
+app.use('/api/v1/deliverables', deliverableRoutes);
 
 // Error middleware
 function errorMiddleware(err, req, res, next) {
