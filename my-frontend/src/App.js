@@ -1,21 +1,32 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import HomePage from './pages/HomePage';
+import React, { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import DashPage from './pages/DashPage';
 import LoginPage from './pages/LoginPage';
 import ProjectPage from './pages/ProjectPage';
+import ReportPage from './pages/ReportPage';
+import TimeTablePage from './pages/TimeTablePage';
 import TaskPage from './pages/TaskPage';
-// Import other pages as needed
 
 const App = () => {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/projects')
+      .then(response => response.json())
+      .then(data => setProjects(data))
+      .catch(error => console.error('Error fetching projects:', error));
+  }, []);
+
   return (
     <div className="App">
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/projects" component={ProjectPage} />
-        <Route path="/tasks" component={TaskPage} />
-        {/* Add other routes as needed */}
-      </Switch>
+      <Routes>
+        <Route path="/" element={<DashPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/projects" element={<ProjectPage projects={projects} />} />
+        <Route path="/report" element={<ReportPage projects={projects} />} />
+        <Route path="/timetable" element={<TimeTablePage />} />
+        <Route path="/tasks" element={<TaskPage />} />
+      </Routes>
     </div>
   );
 }
