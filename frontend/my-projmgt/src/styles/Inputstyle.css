@@ -1,0 +1,106 @@
+/* Inputstyle.css */
+
+body {
+    font-family: monserrat, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+p {
+    color: #ffffff;
+}
+
+.title {
+    color: #ffffff;
+    font-family: monserrat, sans-serif;
+    font-size: 1.5em;
+}
+  
+  .register-form {
+    background-color: #0651CC; /* Use your preferred shade of blue */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+  }
+
+  .radio-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+
+  .radio-container label {
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 2em;
+  }
+
+  input[type="radio"] {
+    margin-right: 5px;
+  }
+
+  .regis-but {
+    background-color: #ffffff;
+    color: #0651CC;
+    font-family: monserrat, sans-serif;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+  }
+  
+
+  .login-form {
+        background-color: #0651CC; /* Use your preferred shade of blue */
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        width: 350px;
+        text-align: center;
+  }
+
+  .login-but {
+    background-color: #ffffff;
+    color: #0651CC;
+    font-family: monserrat, sans-serif;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 2em;
+  }
+
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  a:hover {
+    color: red; /* Color on hover */
+    text-decoration: underline; /* Underline on hover */
+  }

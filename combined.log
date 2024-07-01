@@ -9,3 +9,5 @@
 {"level":"info","message":"Server is running on port 5050","service":"user-service","timestamp":"2024-07-01 17:24:21"}
 {"level":"info","message":"Server is running on port 5050","service":"user-service","timestamp":"2024-07-01 18:20:22"}
 {"level":"info","message":"Server is running on port 5050","service":"user-service","timestamp":"2024-07-01 19:00:07"}
+{"level":"info","message":"Server is running on port 5050","service":"user-service","timestamp":"2024-07-01 21:24:08"}
+{"level":"info","message":"Server is running on port 5050","service":"user-service","timestamp":"2024-07-01 23:13:01"}
