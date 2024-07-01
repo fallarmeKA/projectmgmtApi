@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Doughnut, Bar } from 'react-chartjs-2';
-import 'chart.js/auto'; // Required for chart.js v3
-import '../styles/DashPage.css'; // Updated import path
+import 'chart.js/auto'; 
+import '../styles/DashPage.css'; 
 
 const DashPage = () => {
   const taskData = {
@@ -42,12 +43,12 @@ const DashPage = () => {
           <h2>TITLE</h2>
         </div>
         <ul className="sidebar-menu">
-          <li>Dashboard</li>
-          <li>Projects</li>
-          <li>Time Table</li>
-          <li>My Task</li>
-          <li>Reports</li>
-          <li>Logout</li>
+          <li><Link to="/dashboard">Dashboard</Link></li>
+          <li><Link to="/projects">Projects</Link></li>
+          <li><Link to="/timetable">Time Table</Link></li>
+          <li><Link to="/mytask">My Task</Link></li>
+          <li><Link to="/reports">Reports</Link></li>
+          <li><Link to="/logout">Logout</Link></li>
         </ul>
         <div className="sidebar-footer">
           <div className="user-info">

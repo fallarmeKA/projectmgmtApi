@@ -1,5 +1,6 @@
 import React from 'react';
-import '../styles/TimeTablePage.css'; // Updated import path
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import '../styles/TimeTablePage.css'; // Adjust the import path as needed
 
 const TimeTablePage = () => {
   const projects = [
@@ -24,7 +25,7 @@ const TimeTablePage = () => {
     <div className="timetable-page">
       <div className="sidebar">
         <div className="sidebar-header">
-          <h2>TITLE</h2>
+          <h2>Time Table</h2>
         </div>
         <ul className="sidebar-menu">
           <li>Dashboard</li>
@@ -43,56 +44,26 @@ const TimeTablePage = () => {
       </div>
       <div className="main-content">
         <h1>Time Table</h1>
-        <p>Welcome to your time table</p>
-        <div className="timetable">
-          <div className="timetable-section">
-            <h2>Project</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Project</th>
-                  <th>1st Week</th>
-                  <th>2nd Week</th>
-                  <th>3rd Week</th>
-                  <th>4th Week</th>
-                </tr>
-              </thead>
-              <tbody>
-                {projects.map((project, index) => (
-                  <tr key={index}>
-                    <td>{project.name}</td>
-                    {project.timeline.map((day, i) => (
-                      <td key={i} className={`day-${day}`}></td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="timetable-section">
-            <h2>Tasks</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Task</th>
-                  <th>1st Week</th>
-                  <th>2nd Week</th>
-                  <th>3rd Week</th>
-                  <th>4th Week</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tasks.map((task, index) => (
-                  <tr key={index}>
-                    <td>{task.name}</td>
-                    {task.timeline.map((day, i) => (
-                      <td key={i} className={`day-${day}`}></td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+        <p>Welcome to the time table page</p>
+        <div className="timeline">
+          <h2>Projects</h2>
+          <ul>
+            {projects.map((project, index) => (
+              <li key={index}>
+                <span>{project.name}</span>
+                <span>{project.timeline.join(', ')}</span>
+              </li>
+            ))}
+          </ul>
+          <h2>Tasks</h2>
+          <ul>
+            {tasks.map((task, index) => (
+              <li key={index}>
+                <span>{task.name}</span>
+                <span>{task.timeline.join(', ')}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

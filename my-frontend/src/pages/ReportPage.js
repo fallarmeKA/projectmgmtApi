@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Doughnut, Bar } from 'react-chartjs-2';
 import 'chart.js/auto'; // Required for chart.js v3
-import '../styles/ReportPage.css'; // Updated import path
+import '../styles/ReportPage.css'; // Adjust the import path as needed
 
 const ReportPage = ({ projects }) => {
   const [selectedProject, setSelectedProject] = useState(projects[0]);
@@ -37,7 +37,7 @@ const ReportPage = ({ projects }) => {
     <div className="report-page">
       <div className="sidebar">
         <div className="sidebar-header">
-          <h2>TITLE</h2>
+          <h2>Reports</h2>
         </div>
         <ul className="sidebar-menu">
           <li>Dashboard</li>

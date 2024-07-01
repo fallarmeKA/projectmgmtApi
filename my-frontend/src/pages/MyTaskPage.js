@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import '../styles/TaskPage.css'; // Updated import path
+import { Link } from 'react-router-dom';
+import '../styles/MyTaskPage.css';
 
-const TaskPage = () => {
+const MyTaskPage = () => {
   const [ongoingTasks, setOngoingTasks] = useState([
     { id: 1, title: 'Title', description: 'Description', deadline: 'Deadline', status: 'Ongoing' },
   ]);
 
-  const [completedTasks, setCompletedTasks] = useState([]);
+  const [completedTasks] = useState([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newTask, setNewTask] = useState({ title: '', description: '', deadline: '', status: 'Ongoing' });
@@ -26,15 +27,15 @@ const TaskPage = () => {
     <div className="task-page">
       <div className="sidebar">
         <div className="sidebar-header">
-          <h2>TITLE</h2>
+          <h2>My Tasks</h2>
         </div>
         <ul className="sidebar-menu">
-          <li>Dashboard</li>
-          <li>Projects</li>
-          <li>Time Table</li>
-          <li>My Tasks</li>
-          <li>Reports</li>
-          <li>Logout</li>
+          <li><Link to="/dashboard">Dashboard</Link></li>
+          <li><Link to="/projects">Projects</Link></li>
+          <li><Link to="/timetable">Time Table</Link></li>
+          <li><Link to="/mytask">My Task</Link></li>
+          <li><Link to="/reports">Reports</Link></li>
+          <li><Link to="/logout">Logout</Link></li>
         </ul>
         <div className="sidebar-footer">
           <div className="user-info">
@@ -96,4 +97,4 @@ const TaskPage = () => {
   );
 };
 
-export default TaskPage;
+export default MyTaskPage;

@@ -27,7 +27,7 @@ const ProjectPage = ({ projects }) => {
     <div className="project-page">
       <div className="sidebar">
         <div className="sidebar-header">
-          <h2>TITLE</h2>
+          <h2>Projects</h2>
         </div>
         <ul className="sidebar-menu">
           <li>Dashboard</li>
